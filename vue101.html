@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>How to bind input field and use {{ mustache tag }} in DOM </title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<link rel="stylesheet" type="text/css" href="vue101.css">
+</head>
+
+<body>
+<h1>How to bind input field and use {{ mustache tag }} in DOM</h1>
+
+<div id = "root" >
+<input type="text" id="input" v-model = "message">
+<p>This will work -->  {{ message }}</p>
+</div>
+
+<div id="not-root">
+<p>This will not  work --> {{ message }}</p> <!-- This wont work -->
+</div>
+<script>
+
+
+/* Instead of this */
+//document.querySelector("#input").value = data.message;
+
+/* Let's use VUE.  IT will help us trigger the change of the value if either of the bindings change . */
+/* It means that if somebody types smth in the input field OR if JS somehow changes the value of the data.message , then
+we will be able to catch it ! */
+/* So no need to define Event Listeners ! like key press etc. */
+
+var data = {
+message : "Type anything.. "
+};
+
+new Vue ({
+el : '#root',
+data: data
+});
+
+/* 1) So first step is to create an instance of VUE */
+/* 2) el defines where are we working? Inside which element? */
+/* 3) data defines the default src for the Vue object */
+/* 4) When binding the value to the input field, use the v-model prop */
+/* 5) When you want to use the message value anywhere in DOM, use the mustache structure as {{ message }}
+But keep in mind that message can be used inside the element of the DOM that you defined as el in the Vue object */
+
+</script>
+</body>
+
+</html>
